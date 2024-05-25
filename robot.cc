@@ -75,7 +75,6 @@ void Robot::Avanzar() {
             posicion_.Move(posicion_.GetX() - 1, posicion_.GetY());
             break;
     }
-    cansancio_++;
 }
 
 void Robot::EjecutaSecuencia(std::string secuencia) {
