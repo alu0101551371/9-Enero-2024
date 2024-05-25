@@ -1,3 +1,5 @@
+// Compilar con g++ -o Simulator_Robot robot.cc main_robot.cc
+
 #include "robot.h"
 
 using robot::Robot;

@@ -1,4 +1,5 @@
 #include <iostream>
+#pragma once
 
 class Point2D{
   private:
@@ -11,6 +12,11 @@ class Point2D{
         coordenada_y = _y;
     }
 
+    Point2D() {
+      coordenada_x = -1;
+      coordenada_y = -1;
+    }
+
     //Getters
     double GetX() const{
         return coordenada_x;
@@ -18,5 +24,14 @@ class Point2D{
 
     double GetY() const{
         return coordenada_y;
+    }
+
+    void Move(double x, double y) {
+      coordenada_x = x;
+      coordenada_y = y;
+    }
+
+    void Print(std::ostream& os) {
+      os << "[" << GetX() << ", " << GetY() << "]";
     }
 };

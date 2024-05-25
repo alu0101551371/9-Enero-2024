@@ -18,7 +18,7 @@ Point2D Robot::GetPosicion() const {
     return posicion_;
 }
 
-Direccion Robot::GetOrientacion() const {
+robot::Direccion Robot::GetOrientacion() const {
     return direccion_;
 }
 
@@ -60,23 +60,23 @@ void Robot::GiroIzquierda() {
     }
 }
 
-// void Robot::Avanza() {
-//     switch (direccion_) {
-//         case Direccion::Norte:
-//             posicion_.Move(posicion_.GetX(), posicion_.GetY() + 1);
-//             break;
-//         case Direccion::Sur:
-//             posicion_.Move(posicion_.GetX(), posicion_.GetY() - 1);
-//             break;
-//         case Direccion::Este:
-//             posicion_.Move(posicion_.GetX() + 1, posicion_.GetY());
-//             break;
-//         case Direccion::Oeste:
-//             posicion_.Move(posicion_.GetX() - 1, posicion_.GetY());
-//             break;
-//     }
-//     cansancio_++;
-// }
+void Robot::Avanzar() {
+    switch (direccion_) {
+        case Direccion::Norte:
+            posicion_.Move(posicion_.GetX(), posicion_.GetY() + 1);
+            break;
+        case Direccion::Sur:
+            posicion_.Move(posicion_.GetX(), posicion_.GetY() - 1);
+            break;
+        case Direccion::Este:
+            posicion_.Move(posicion_.GetX() + 1, posicion_.GetY());
+            break;
+        case Direccion::Oeste:
+            posicion_.Move(posicion_.GetX() - 1, posicion_.GetY());
+            break;
+    }
+    cansancio_++;
+}
 
 void Robot::EjecutaSecuencia(std::string secuencia) {
     for (char c : secuencia) {
@@ -88,7 +88,7 @@ void Robot::EjecutaSecuencia(std::string secuencia) {
                 GiroIzquierda();
                 break;
             case 'A':
-                Avanza();
+                Avanzar();
                 cansancio_++;
                 break;
         }
@@ -96,7 +96,9 @@ void Robot::EjecutaSecuencia(std::string secuencia) {
 }
 
 std::ostream& robot::operator<<(std::ostream& os, const Robot& robot) {
-    os << "Robot " << robot.GetNombre() << " en posición " << robot.GetPosicion() << " orientado hacia ";
+    os << "Robot " << robot.GetNombre() << " en posición ";
+    robot.GetPosicion().Print(os);
+    os << " orientado hacia ";
     switch (robot.GetOrientacion()) {
         case Direccion::Norte:
             os << "Norte";

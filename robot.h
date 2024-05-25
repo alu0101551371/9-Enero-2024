@@ -1,5 +1,8 @@
 // Creación y definición de la clase Robot
 
+#ifndef ROBOT_H
+#define ROBOT_H
+
 #include "point2D.h"
 #include <iostream>
 #include <string>
@@ -29,13 +32,14 @@ namespace robot {
             void Avanzar();
             void EjecutaSecuencia(std::string secuencia);
 
-            // E/S
-            friend std::ostream& operator<<(std::ostream& os, const Robot& robot);
-
         private:
             std::string nombre_;
             Point2D posicion_;
             Direccion direccion_;
             int cansancio_;
     };
+
+    std::ostream& operator<<(std::ostream& os, const Robot& robot);
 }
+
+#endif
